@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SIBI — Bahasa Isyarat Indonesia</title>
+<link rel="icon" href="data:,">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<div class="bg-blur-container"></div>
+
+<div class="shell">
+
+  <aside class="sidebar">
+    <div class="sb-top">
+      <div class="sb-logo">
+        <div class="sb-logo-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M18 11V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v0"/>
+            <path d="M14 10V4a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v2"/>
+            <path d="M10 10.5V6a2 2 0 0 0-2-2v0a2 2 0 0 0-2 2v8"/>
+            <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/>
+          </svg>
+        </div>
+        <div>
+          <div class="sb-logo-name">BI-SIGN</div>
+          <div class="sb-logo-sub">Sign Language Translator</div>
+        </div>
+      </div>
+
+      <div class="sb-section-label">Mode Deteksi</div>
+      <nav class="sb-nav">
+        <button class="sb-nav-item active" id="modeAutoBtn">
+          <span>Otomatis</span>
+        </button>
+        <button class="sb-nav-item" id="modeHurufBtn">
+          <span>Huruf & Angka</span>
+        </button>
+        <button class="sb-nav-item" id="modeKataBtn">
+          <span>Kata</span>
+        </button>
+      </nav>
+
+      <div class="sb-section-label" style="margin-top:28px">Statistik Model</div>
+      <div class="sb-stats">
+        <div class="sb-stat">
+          <span class="sb-stat-n">41</span>
+          <span class="sb-stat-l">Huruf & Angka</span>
+        </div>
+        <div class="sb-stat">
+          <span class="sb-stat-n">22</span>
+          <span class="sb-stat-l">Kata</span>
+        </div>
+        <div class="sb-stat">
+          <span class="sb-stat-n">BiLSTM</span>
+          <span class="sb-stat-l">Arsitektur</span>
+        </div>
+      </div>
+
+    <div class="sb-bottom">
+      <div class="sb-mode-active">Mode: <b id="modeLabel">AUTO</b></div>
+      <div class="sb-credit">Yuli Mulia Dinah<br/><small>Politeknik Negeri Lhokseumawe</small></div>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <header class="hero-header">
+      <div class="hero-badge">Aplikasi Penerjemah Bahasa Isyarat Berbasis BiLSTM</div>
+      <h1 class="hero-title">Sistem Isyarat<br>Bahasa Indonesia</h1>
+      <p class="hero-subtitle">Terjemahkan gerakan tangan SIBI ke dalam teks secara real-time dengan akurasi tinggi langsung melalui kamera perangkat Anda.</p>
+      <div class="scroll-hint">
+        <span>Scroll ke bawah untuk melihat panel deteksi</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+      </div>
+    </header>
+
+    <div class="topbar">
+      <div class="topbar-title">
+        <h1>Penerjemah Bahasa Isyarat</h1>
+        <span class="topbar-sub">Sistem Isyarat Bahasa Indonesia · Real-Time Deep Learning</span>
+      </div>
+      <div class="topbar-right">
+        <div class="status-pill" id="statusBadge">
+          <span class="status-dot"></span>
+          <span id="statusText">Siap</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="content-grid">
+
+      <div class="cam-panel">
+        <div class="panel-hdr">
+          <span class="panel-lbl">Live Camera Stream</span>
+          <div class="live-tag" id="liveBadge">
+            <span class="live-dot"></span> LIVE
+          </div>
+        </div>
+
+        <div class="video-box">
+          <video id="video" autoplay playsinline muted></video>
+          <div class="scan-line" id="scanLine"></div>
+          
+          <span class="vc tl"></span>
+          <span class="vc tr"></span>
+          <span class="vc bl"></span>
+          <span class="vc br"></span>
+          
+          <div class="video-idle" id="vOverlay">
+            <div class="idle-icon-wrap">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="3"/></svg>
+            </div>
+            <span>Kamera Siap. Klik tombol di bawah untuk mendeteksi.</span>
+          </div>
+        </div>
+
+        <div class="cam-footer">
+          <button class="btn-start" id="startBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Mulai Deteksi
+          </button>
+          <button class="btn-stop hidden" id="stopBtn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="6" width="12" height="12" rx="2"/></svg>
+            Berhenti Deteksi
+          </button>
+        </div>
+      </div>
+
+      <div class="result-panel">
+
+        <div class="detect-card">
+          <div class="panel-hdr">
+            <span class="panel-lbl">Hasil Deteksi</span>
+            <span class="conf-hint" id="confHint">—</span>
+          </div>
+          <div class="detect-display">
+            <div class="detect-value" id="charResult">—</div>
+            <div class="detect-sub" id="resultSub">Menunggu gestur terdeteksi...</div>
+          </div>
+          <div class="prog-wrap">
+            <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+            <div class="prog-label" id="progText">—</div>
+          </div>
+        </div>
+
+        <div class="sentence-card">
+          <div class="panel-hdr">
+            <span class="panel-lbl">Kalimat Terbentuk</span>
+            <div class="sentence-actions">
+              <button class="act-btn" id="spaceBtn">Spasi</button>
+              <button class="act-btn" id="backspaceBtn">⌫</button>
+              <button class="act-btn act-danger" id="clearBtn">Reset</button>
+            </div>
+          </div>
+          <div class="sentence-text" id="sentenceResult">…</div>
+          <div class="sentence-hint">Teks dikonversi secara otomatis oleh model kecerdasan buatan (BiLSTM).</div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

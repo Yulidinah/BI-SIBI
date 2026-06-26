@@ -1,0 +1,43 @@
+# Model files (terlalu besar untuk GitHub)
+models/*.pth
+models/*.h5
+
+# Dataset (data pribadi, tidak perlu diupload)
+dataset_v1/
+dataset_v2/
+dataset/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+.Python
+
+# Virtual environment
+venv/
+env/
+.env/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Build
+dist/
+build/
+*.egg-info/
