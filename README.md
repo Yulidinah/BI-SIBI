@@ -1,4 +1,4 @@
-# 🤟 Bahasa Isyarat SIBI — Real-Time Sign Language Translator
+#  Bahasa Isyarat SIBI — Real-Time Sign Language Translator
 
 Sistem penerjemah Bahasa Isyarat Indonesia (SIBI) secara real-time menggunakan deep learning BiLSTM dan MediaPipe, dijalankan melalui antarmuka web.
 
